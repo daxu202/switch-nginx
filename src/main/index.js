@@ -22,9 +22,14 @@ function createWindow () {
     const iconPath = path.join(__static, iconName);
     console.log(iconPath)
   mainWindow = new BrowserWindow({
-    height: 634,
-    useContentSize: true,
-    width: 1000,
+      width: 800,
+      height: 500,
+      minWidth: 400,
+      minHeight: 250,
+      fullscreenable: true,
+      useContentSize: true,
+      skipTaskbar: true,
+      show: true,
       icon: iconPath
   })
 
@@ -35,12 +40,15 @@ function createWindow () {
   })
 
 
-
     let tray = new Tray(iconPath);
 
     global.sharedObject = {
         tray: tray
     }
+
+    tray.on('click', function(e) {
+        mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
+    });
 }
 
 app.on('ready', createWindow)

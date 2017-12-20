@@ -108,30 +108,100 @@
                   submenu: [
                       {
                           label: '启动nginx',
-                          accelerator: 'CmdOrCtrl+O',
+                          accelerator: 'CmdOrCtrl+F1',
                           click: () => {
 							  this.startNginx();
                           }
                       },
                       {
                           label: '重启nginx',
+                          accelerator: 'CmdOrCtrl+F2',
                           click: () => {
                               this.reloadNginx();
                           }
                       },
                       {
                           label: '停止nginx',
+                          accelerator: 'CmdOrCtrl+F3',
                           click: () => {
 							  this.stopNginx();
                           }
                       },
                       {
                           label: '强制关闭',
+                          accelerator: 'CmdOrCtrl+F4',
                           click: () => {
                               this.forceStopNginx();
                           }
                       }
                   ]
+              },
+              {
+                  label: '编辑',
+                  submenu: [
+                      {
+                          label: '撤销',
+                          role: 'undo'
+                      }, {
+                          label: '重做',
+                          role: 'redo'
+                      }, {
+                          type: 'separator'
+                      }, {
+                          label: '剪切',
+                          role: 'cut'
+                      }, {
+                          label: '复制',
+                          role: 'copy'
+                      }, {
+                          label: '粘贴',
+                          role: 'paste'
+                      }, {
+                          label: '删除',
+                          role: 'delete'
+                      }, {
+                          label: '全选',
+                          role: 'selectall'
+                      },
+                      {
+                          label: '保存',
+                          accelerator: 'CmdOrCtrl+S',
+                          click: () => {
+                              this.saveNginxConfContent();
+                          }
+                      }
+				  ]
+			  },
+              {
+                  label: '视图',
+                  submenu: [
+                      {
+                          label: '切换全屏',
+                          role: 'togglefullscreen'
+                      }
+                  ]
+              },
+              {
+                  label: '窗口',
+                  role: 'window',
+                  submenu: [{
+                      label: '最小化',
+                      role: 'minimize'
+                  }, {
+                      label: '关闭',
+                      role: 'close'
+                  }]
+              },
+              {
+                  label: '帮助',
+                  role: 'help',
+                  submenu: [
+                      {
+                          label: '检查更新',
+                          click () {
+                              checkUpdate.check()
+                          }
+                      }]
               }
           ];
           let menu = Menu.buildFromTemplate(application_menu);
@@ -141,7 +211,6 @@
           const contextMenu = Menu.buildFromTemplate([
               {
                   label: '启动nginx',
-                  accelerator: 'CmdOrCtrl+O',
                   click: () => {
                       this.startNginx();
                   }
